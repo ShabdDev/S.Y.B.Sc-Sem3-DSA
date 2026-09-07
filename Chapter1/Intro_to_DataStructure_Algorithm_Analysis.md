@@ -46,3 +46,34 @@ In C programming, data types define the type and size of data that a variable ca
    union: Similar to a struct, but all members share the same memory location to save space.
    enum (Enumeration): Assigns names to integer constants to make code more readable.
 
+4. Void Data Type (void)void:
+   Represents the absence of a value.
+   It is commonly used to specify that a function does not return any data or to create generic pointers (void*).
+
+----
+
+Data Object
+
+In computer science and C programming, a data object is a region of storage (memory) that holds a value or a collection of values.
+While a data type is an abstract blueprint or definition, a data object is the actual concrete instance created in memory based on that blueprint.
+
+Key Characteristics of a Data Object
+
+Every data object in C has four core properties:
+Memory Address: The physical location in the RAM where the object resides.
+Size: The amount of space it occupies, which is determined by its data type (e.g., 4 bytes for an int).
+Value: The actual data or contents currently stored inside that memory region.
+Lifetime: The duration during the program's execution for which that memory remains allocated.
+
+Data Object vs. Variable
+
+People often use these terms interchangeably, but there is a distinct technical difference:
+Variable: A variable is a named identifier that refers to a data object. It is a label we use in our code to easily access a memory location.
+Data Object: This is the underlying memory itself. Not all data objects have names. 
+For example, when you dynamically allocate memory using malloc(), you create a data object that does not have a variable name; it can only be accessed via a pointer.
+
+Types of Data Objects in C
+Data objects can be categorized based on their complexity and how they are created:
+Primitive Data Objects: A single, simple region of memory holding one fundamental value (e.g., a single int or char).
+Structured (Composite) Data Objects: An aggregate region of memory holding multiple values grouped together, such as an Array or a Structure (struct).
+Anonymous Data Objects: Memory spaces created at runtime using dynamic allocation (malloc, calloc). They don't have a source-code name and exist purely as objects in the heap memory.
