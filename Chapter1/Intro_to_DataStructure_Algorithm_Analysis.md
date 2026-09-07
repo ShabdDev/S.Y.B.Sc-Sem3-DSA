@@ -77,3 +77,25 @@ Data objects can be categorized based on their complexity and how they are creat
 Primitive Data Objects: A single, simple region of memory holding one fundamental value (e.g., a single int or char).
 Structured (Composite) Data Objects: An aggregate region of memory holding multiple values grouped together, such as an Array or a Structure (struct).
 Anonymous Data Objects: Memory spaces created at runtime using dynamic allocation (malloc, calloc). They don't have a source-code name and exist purely as objects in the heap memory.
+
+In computer science, an Abstract Data Type (ADT) is a mathematical model for data types that defines a data type solely by its behavior and operations, without specifying how it is implemented in code.Think of an ADT as a blueprint or user manual. It tells you exactly what the data structure does, but hides the details of how it does it.
+
+The Two Core Components of an ADT
+Every ADT is defined by two things:
+The Data: What kind of values or elements the type can hold.
+The Operations: The actions or functions you can perform on that data (e.g., insert, delete, search). 
+The Real-World Analogy: A SmartphoneWhen you use a smartphone, you know that pressing the volume button will increase the sound, and tapping the camera icon will take a photo. You do not need to know the circuit layout, the semiconductor engineering, or the underlying OS code to use it. The buttons are the ADT interface, and the internal electronics are the hidden implementation.
+
+Common Examples of ADTs Here are the standard ADTs you will encounter in C programming, along with their defined operations:
+List ADT: A collection of elements in sequential order.
+Operations: insert(), delete(), get(), size().
+Stack ADT: A Last-In, First-Out (LIFO) collection.
+Operations: push() (add to top), pop() (remove from top), peek() (look at top element).
+Queue ADT: A First-In, First-Out (FIFO) collection.Operations: enqueue() (add to back), dequeue() (remove from front).
+Graph ADT: A collection of nodes (vertices) connected by lines (edges).Operations: addVertex(), addEdge(), getNeighbors().
+
+Why do we need ADTs? (Data Abstraction)
+In C, implementing an ADT involves Encapsulation. 
+By creating custom header files (.h) for the interface and source files (.c) for the logic, 
+you achieve:Code Flexibility: You can completely change the internal implementation (e.g., swapping an Array out for a Linked List) without changing a single line of code in the main application that uses it.
+Modular Coding: Different developers can work on the implementation and the application simultaneously, as long as they agree on the ADT specification.
