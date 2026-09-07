@@ -99,3 +99,36 @@ In C, implementing an ADT involves Encapsulation.
 By creating custom header files (.h) for the interface and source files (.c) for the logic, 
 you achieve:Code Flexibility: You can completely change the internal implementation (e.g., swapping an Array out for a Linked List) without changing a single line of code in the main application that uses it.
 Modular Coding: Different developers can work on the implementation and the application simultaneously, as long as they agree on the ADT specification.
+
+-----
+
+In computer science and C programming, a data structure is a specialised way of organizing, storing, and managing data in a computer's memory so that it can be accessed and modified efficiently.While an Abstract Data Type (ADT) tells you what operations can be performed, a data structure is the actual, concrete code implementation of that model.
+
+Classification of Data Structures
+
+Data structures are broadly divided into two main categories based on how the data elements are arranged in memory:
+
+1. Linear Data Structures
+   In these structures, data elements are arranged sequentially or linearly, where each element is attached to its previous and next adjacent elements.
+   Arrays: A collection of elements stored in contiguous (continuous) memory locations. It allows fast, direct access via indexes.
+   Linked Lists: Elements (called nodes) are scattered in memory and connected using pointers. They can grow or shrink dynamically at runtime.
+   Stacks: A structure following the LIFO (Last-In, First-Out) principle.
+   Elements are added and removed from the same end (e.g., undo operations, function call stacks).
+   Queues: A structure following the FIFO (First-In, First-Out) principle.
+   Elements are added at the back and removed from the front (e.g., CPU task scheduling, print spools).
+   
+3. Non-Linear Data StructuresIn these structures, data elements are not arranged sequentially.
+   An element can be connected to multiple other elements, forming a hierarchy or a network.
+   Trees: A hierarchical structure consisting of nodes connected by edges, starting from a single "root" node (e.g., file directories, XML parsing).
+   Graphs: A network of nodes (vertices) connected by paths (edges).
+   There is no strict parent-child relationship (e.g., social networks, Google Maps routing).
+
+Common Operations Performed on Data Structures Regardless of which data structure you choose, you will typically implement the following fundamental operations in C:
+
+Traversal: Accessing each element in the data structure exactly once to process or display it.
+Insertion: Adding a new data element at a specified position.
+Deletion: Removing an existing data element from the structure.
+Searching: Finding the location of a specific element within the structure.
+Sorting: Arranging the elements in a specific logical order (ascending or descending).
+Merging: Combining two different data structures of the same type into a single one.
+
