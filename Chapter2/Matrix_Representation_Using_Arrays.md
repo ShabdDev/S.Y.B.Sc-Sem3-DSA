@@ -267,24 +267,19 @@ A[i][j]
 
 in row-major order is:
 
-$$
-Address(A[i][j])
-=
-Base
-+
-((i \times NumberOfColumns)+j)
-\times SizeOfElement
-$$
+
+Address(A[I][J])=B+W*((I-LR)*N+(J-LC))\)
 
 Where:
 
-| Term | Meaning |
-|---|---|
-| `Base` | Starting address of array |
-| `i` | Row index |
-| `j` | Column index |
-| `NumberOfColumns` | Total number of columns |
-| `SizeOfElement` | Size of each element in bytes |
+Variable Definitions
+- \(B\): Base address of the array (starting address of \(A[0][0]\) or the first element).
+- \(W\): Storage size of a single element in bytes (e.g., 4 bytes for an int).
+- \(I\): Row index of the target element.
+- \(J\): Column index of the target element.
+- \(LR\): Lower bound of the row index (defaults to 0 if not specified).
+- \(LC\): Lower bound of the column index (defaults to 0 if not specified).
+- \(M\): Total number of rows in the matrix.\(N\): Total number of columns in the matrix.
 
 ---
 
@@ -313,92 +308,6 @@ j = 1
 Number of columns = 4
 Size = 4 bytes
 ```
-
-Formula:
-
-$$
-Address =
-Base + [(i \times columns)+j]\times size
-$$
-
-Substitute:
-
-$$
-=1000+[(2\times4)+1]\times4
-$$
-
-$$
-=1000+[8+1]\times4
-$$
-
-$$
-=1000+9\times4
-$$
-
-$$
-=1000+36
-$$
-
-Therefore:
-
-```text
-Address(A[2][1]) = 1036
-```
-
----
-
-# 9. Why `Number of Columns` is Used?
-
-Suppose:
-
-```text
-A[3][4]
-```
-
-and we want:
-
-```text
-A[2][1]
-```
-
-Before reaching row `2`, we need to completely skip:
-
-```text
-Row 0 → 4 elements
-Row 1 → 4 elements
-```
-
-Total skipped:
-
-```text
-2 × 4 = 8 elements
-```
-
-Then move one position inside row 2:
-
-```text
-+ 1
-```
-
-Therefore:
-
-```text
-8 + 1 = 9 elements
-```
-
-Then:
-
-```text
-9 × 4 bytes = 36 bytes
-```
-
-So:
-
-```text
-1000 + 36 = 1036
-```
-
----
 
 # 10. Column-Major Order
 
@@ -498,92 +407,9 @@ Linear representation:
 
 The formula is:
 
-$$
-Address(A[i][j])
-=
-Base
-+
-((j \times NumberOfRows)+i)
-\times SizeOfElement
-$$
-
-Notice the difference:
-
-### Row-Major
-
-$$
-(i \times columns)+j
-$$
-
-### Column-Major
-
-$$
-(j \times rows)+i
-$$
+(A[I][J]) = B+W * ((J-LC) * M+(I-LR))\)
 
 ---
-
-# 13. Column-Major Address Calculation
-
-Suppose:
-
-```text
-A[3][4]
-
-Base = 1000
-Integer size = 4 bytes
-```
-
-Find:
-
-```text
-A[2][1]
-```
-
-Here:
-
-```text
-i = 2
-j = 1
-rows = 3
-```
-
-Formula:
-
-$$
-Address =
-Base+[(j\times rows)+i]\times size
-$$
-
-$$
-=1000+[(1\times3)+2]\times4
-$$
-
-$$
-=1000+[3+2]\times4
-$$
-
-$$
-=1000+20
-$$
-
-Therefore:
-
-```text
-Address(A[2][1]) = 1020
-```
-
----
-
-# 14. Row-Major vs Column-Major
-
-| Feature | Row-Major | Column-Major |
-|---|---|---|
-| Storage | Row by row | Column by column |
-| First priority | Row | Column |
-| Formula | `(i × columns) + j` | `(j × rows) + i` |
-| C | Uses Row-Major | Not native |
-| Fortran | Not native | Uses Column-Major |
 
 ### Important
 
@@ -670,57 +496,7 @@ Output:
 
 ---
 
-# 17. Understanding the Nested Loops
-
-```c
-for(int i = 0; i < 3; i++)
-```
-
-controls the **rows**.
-
-```c
-for(int j = 0; j < 3; j++)
-```
-
-controls the **columns**.
-
-Therefore:
-
-```c
-A[i][j]
-```
-
-means:
-
-```text
-A[row][column]
-```
-
-Execution:
-
-```text
-i = 0
-
-j = 0 → A[0][0]
-j = 1 → A[0][1]
-j = 2 → A[0][2]
-
-i = 1
-
-j = 0 → A[1][0]
-j = 1 → A[1][1]
-j = 2 → A[1][2]
-
-i = 2
-
-j = 0 → A[2][0]
-j = 1 → A[2][1]
-j = 2 → A[2][2]
-```
-
----
-
-# 18. Matrix Addition
+# 17. Matrix Addition
 
 Two matrices can be added **only when they have the same dimensions**.
 
@@ -764,7 +540,7 @@ $$
 
 ---
 
-# 19. Matrix Addition Rule
+# 18. Matrix Addition Rule
 
 Each element is added with the element at the **same position**.
 
@@ -786,7 +562,7 @@ $$
 
 ---
 
-# 20. C Program – Matrix Addition
+# 19. C Program – Matrix Addition
 
 ```c
 #include <stdio.h>
@@ -853,7 +629,7 @@ $$
 
 ---
 
-# 21. Matrix Subtraction
+# 22. Matrix Subtraction
 
 Matrix subtraction follows the same rule as addition.
 
@@ -1933,275 +1709,10 @@ For two `n × n` matrices:
 
 ---
 
-# 43. Important Rules to Remember
 
-## Matrix Addition
 
-```text
-Same number of rows
-AND
-Same number of columns
-```
 
-Example:
 
-```text
-2 × 3 + 2 × 3 → Possible
-```
 
-But:
 
-```text
-2 × 3 + 3 × 2 → Not possible
-```
 
----
-
-## Matrix Multiplication
-
-Condition:
-
-```text
-Columns of first matrix
-=
-Rows of second matrix
-```
-
-Example:
-
-```text
-A = 2 × 3
-B = 3 × 4
-
-A × B → Possible
-Result = 2 × 4
-```
-
-But:
-
-```text
-A = 2 × 3
-B = 2 × 4
-
-A × B → Not possible
-```
-
-because:
-
-```text
-3 ≠ 2
-```
-
----
-
-# 44. Addition vs Multiplication
-
-This distinction should be very clear.
-
-## Addition
-
-```text
-Same position + same position
-```
-
-```c
-C[i][j] = A[i][j] + B[i][j];
-```
-
-Example:
-
-```text
-A[1][2] + B[1][2]
-```
-
----
-
-## Multiplication
-
-```text
-Row of A × Column of B
-```
-
-```c
-C[i][j] += A[i][k] * B[k][j];
-```
-
-Example:
-
-```text
-A row 1 × B column 2
-```
-
----
-
-# 45. Complete Concept Map
-
-```text
-MATRIX
-│
-├── Representation
-│   │
-│   ├── 2D Array
-│   │
-│   ├── Row-Major
-│   │   ├── Row by Row
-│   │   └── Formula
-│   │
-│   └── Column-Major
-│       ├── Column by Column
-│       └── Formula
-│
-├── Operations
-│   │
-│   ├── Traversal
-│   ├── Addition
-│   ├── Subtraction
-│   ├── Multiplication
-│   ├── Transpose
-│   └── Searching
-│
-└── Sparse Matrix
-    │
-    ├── Mostly Zero
-    ├── Dense vs Sparse
-    ├── Need for Sparse Representation
-    ├── Triplet Representation
-    ├── C Program
-    └── Memory Advantage
-```
-
----
-
-# 46. Exam-Oriented Questions
-
-## Basic Questions
-
-1. What is a matrix?
-2. What is a two-dimensional array?
-3. How is a matrix represented using arrays?
-4. What is row-major representation?
-5. What is column-major representation?
-6. Which representation does C use?
-7. Write the row-major address formula.
-8. Write the column-major address formula.
-9. What is matrix traversal?
-10. What is matrix transpose?
-
-## Conceptual Questions
-
-11. Why is matrix addition possible only for matrices of the same order?
-12. What is the condition for matrix multiplication?
-13. Why are three loops required for matrix multiplication?
-14. What is a sparse matrix?
-15. What is a dense matrix?
-16. Why do we need sparse matrix representation?
-17. What is triplet representation?
-18. What information is stored in a triplet representation?
-19. What are the advantages of sparse matrix representation?
-20. Compare normal and sparse matrix representation.
-
-## Programming Questions
-
-21. Write a C program to read and display a matrix.
-22. Write a C program to add two matrices.
-23. Write a C program to subtract two matrices.
-24. Write a C program to multiply two matrices.
-25. Write a C program to find the transpose.
-26. Write a C program to search an element.
-27. Write a C program to convert a matrix into triplet representation.
-28. Write a C program to count zero and non-zero elements.
-
----
-
-# 47. Quick Revision
-
-```text
-Matrix
-    ↓
-Rows + Columns
-    ↓
-2D Array
-    ↓
-Memory is Linear
-    ↓
-Row-Major / Column-Major
-    ↓
-Matrix Operations
-    ↓
-Addition
-Subtraction
-Multiplication
-Transpose
-Searching
-    ↓
-Sparse Matrix
-    ↓
-Store only non-zero elements
-    ↓
-Triplet Representation
-(row, column, value)
-```
-
-## Most Important Formulas
-
-### Row-Major
-
-$$
-\boxed{
-Address(A[i][j])
-=
-Base+
-[(i\times columns)+j]\times size
-}
-$$
-
-### Column-Major
-
-$$
-\boxed{
-Address(A[i][j])
-=
-Base+
-[(j\times rows)+i]\times size
-}
-$$
-
-### Matrix Multiplication
-
-$$
-\boxed{
-C[i][j]
-=
-\sum_k A[i][k]B[k][j]
-}
-$$
-
-### Transpose
-
-$$
-\boxed{
-A^T[i][j]=A[j][i]
-}
-$$
-
-### Matrix Multiplication Dimension
-
-$$
-\boxed{
-(m\times n)(n\times p)=m\times p
-}
-$$
-
-### Sparse Matrix
-
-```text
-Sparse Matrix
-    =
-Matrix with predominantly zero elements
-```
-
-### Triplet
-
-```text
-(row, column, value)
-```
