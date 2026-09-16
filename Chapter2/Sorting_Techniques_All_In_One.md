@@ -1069,21 +1069,6 @@ Therefore, `O(n log n)` algorithms generally scale much better for large dataset
 
 ---
 
-# 9. Important Exam Questions
-
-## Short Questions
-
-1. What is sorting?
-2. Define Bubble Sort.
-3. Define Insertion Sort.
-4. Define Merge Sort.
-5. Define Quick Sort.
-6. What is a stable sorting algorithm?
-7. What is an in-place sorting algorithm?
-8. What is a pivot?
-9. What is partitioning?
-10. What is Divide and Conquer?
-
 ## Complexity Questions
 
 ### Q1. What is the best-case complexity of Bubble Sort?
@@ -1131,43 +1116,6 @@ O(n²)
 ```text
 Merge Sort
 ```
-
----
-
-# 10. Important Interview Questions
-
-### Q1. Which sorting algorithm is suitable for nearly sorted data?
-
-**Insertion Sort** is generally very suitable because its best case is `O(n)`.
-
-### Q2. Which of these algorithms are stable?
-
-```text
-Bubble Sort     → Yes
-Insertion Sort  → Yes
-Merge Sort      → Yes
-Quick Sort      → No, standard implementation
-```
-
-### Q3. Which algorithms use Divide and Conquer?
-
-```text
-Merge Sort
-Quick Sort
-```
-
-### Q4. Why can Quick Sort become `O(n²)`?
-
-Poor pivot selection can create highly unbalanced partitions.
-
-### Q5. Why does Merge Sort require extra memory?
-
-The standard array implementation uses temporary storage while merging two sorted portions.
-
-### Q6. Which is often faster in practice: Merge Sort or Quick Sort?
-
-Quick Sort is often very fast in practice because of good cache behavior and low constant factors, but its worst case is `O(n²)`. Merge Sort provides a guaranteed `O(n log n)` bound.
-
 ---
 
 # 11. Quick Revision
