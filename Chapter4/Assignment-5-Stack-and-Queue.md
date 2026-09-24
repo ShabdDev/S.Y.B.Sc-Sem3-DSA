@@ -1681,7 +1681,3 @@ SPECIAL
 ```
 
 ---
-
-## Source Reference
-
-The lab workbook identifies Assignment 5 as **Stack and Queue**, with static/dynamic stack and queue topics and the SET A, SET B and SET C exercises used above. The assignment appears on pages 15–19 of the uploaded workbook. fileciteturn0file0L609-L665 fileciteturn0file0L680-L733 fileciteturn0file0L780-L803
